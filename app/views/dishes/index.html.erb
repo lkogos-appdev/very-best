@@ -58,13 +58,50 @@
               <%= dish.name %>
             </a>
           </td>
-        <td>
-          <% if dish.cuisine.present? %>
-            <a href="/cuisines/<%= dish.cuisine.id %>">
-              <%= dish.cuisine.name %>
-            </a>
-          <% end %>
-        </td>
+        <<td>
+          <!-- If statement goes here to check if bookmark exists -->
+   
+         
+          <% if current_user.bookmarks.where(:dish_id => dish.id).exists? %>
+          
+          <% bookmark_location = Bookmark.find_by(:user_id => current_user.id, :dish_id => dish.id).id %>
+          
+          <% venue_id = Bookmark.find_by(:id => bookmark_location).venue_id %>
+          <% venue_name = Venue.find_by(:id => venue_id).name %>
+          
+          
+            <a href="/venues/<%= venue_id %>">
+                <%= venue_name %>
+              </a>
+          
+          <% else %> 
+          
+          
+              <form action="/create_bookmark" class="form-inline" method="post">
+                <!-- Hidden input for authenticity token to protect from forgery -->
+                
+                <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+                <input type="hidden" name="dish_id" value="<%= dish.id %>">
+                <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+                <!-- Label and input for venue_id -->
+                <label for="venue_id" class="control-label sr-only">
+                  Venue
+                </label>
+
+                <select name="venue_id" id="venue_id" class="form-control form-control-sm mr-sm-1">
+                <option value="">Choose a venue...</option>
+                
+                <% @venues.each do |venue| %>
+                <option value="<%= venue.id %>"><%= venue.name %></option>
+                <% end %>
+                </select>
+                <button class="btn btn-primary btn-sm">
+                  <i class="fa fa-heart"></i>
+                </button>
+              </form>
+            <% end %>
+          </td>
         <td class="text-right">
            <% if dish.cuisine.present? %>
             <span class="badge badge-primary">
