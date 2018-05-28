@@ -49,6 +49,14 @@
             <li class="nav-item"><a class="nav-link" href="/dishes">Dishes</a></li>
             <li class="nav-item"><a class="nav-link" href="/venues">Venues</a></li>
           <% end %>
+          <% if current_page?('/users/edit')%>
+            <li class="nav-item"><a class="nav-link" href="/dishes">Dishes</a></li>
+            <li class="nav-item"><a class="nav-link" href="/venues">Venues</a></li>
+          <% end %>
+          <% if current_page?('/users/')%>
+            <li class="nav-item"><a class="nav-link" href="/dishes">Dishes</a></li>
+            <li class="nav-item"><a class="nav-link" href="/venues">Venues</a></li>
+          <% end %>
         </ul>
         <ul class="navbar-nav ml-auto">
           <% if current_user.present? %>
