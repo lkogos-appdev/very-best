@@ -9,7 +9,9 @@ class DishesController < ApplicationController
 
   def show
     @bookmark = Bookmark.new
+    @bookmarks = Bookmark.all
     @dish = Dish.find(params[:id])
+    @venues = Venue.all
 
     render("dishes/show.html.erb")
   end
