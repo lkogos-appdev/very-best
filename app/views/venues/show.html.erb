@@ -86,10 +86,11 @@
           Popular dishes here
         </li>
           
-         <% @venue.bookmarks.each do |bookmark| %>
+         <% @venue.specialties.uniq.each do |dish| %>
+         
           <li class="list-group-item">
-            <a href="/dishes/<%= bookmark.dish.id %>">
-              <%= bookmark.dish.name %>
+            <a href="/dishes/<%= dish.id %>">
+              <%= dish.name %>
             </a>
           </li>
           <% end %>
