@@ -119,7 +119,7 @@
       {
         "lat": <%= @venue.address_latitude %>,
         "lng": <%= @venue.address_longitude %>,
-        "infowindow": "<h5><%= @venue.created_at %></h5><small><%= @venue.address_formatted_address %></small>"
+        "infowindow": "<h5><%= @venue.name %></h5><small><%= @venue.address_formatted_address %></small>"
       }
     ]);
     handler.bounds.extendWith(markers);
