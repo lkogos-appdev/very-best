@@ -38,23 +38,16 @@
         <ul class="navbar-nav mr-auto">
 
           <li class="nav-item active">
-          <% if current_page?('/dishes')%>
-            <li class="nav-item active"><a class="nav-link" href="/dishes">Dishes</a></li>
-            <li class="nav-item"><a class="nav-link" href="/venues">Venues</a></li>
-          <% end %>
-          <% if current_page?('/venues')%>
-            <li class="nav-item"><a class="nav-link" href="/dishes">Dishes</a></li>
-            <li class="nav-item active "><a class="nav-link" href="/venues">Venues</a></li>
-          <% end %>
           <% if current_page?('/')%>
             <li class="nav-item"><a class="nav-link" href="/dishes">Dishes</a></li>
             <li class="nav-item"><a class="nav-link" href="/venues">Venues</a></li>
-          <% end %>
-          <% if current_page?('/users/edit')%>
+          <% elsif params[:controller] == "venues"%>
             <li class="nav-item"><a class="nav-link" href="/dishes">Dishes</a></li>
+            <li class="nav-item active "><a class="nav-link" href="/venues">Venues</a></li>
+          <% elsif params[:controller] == "dishes"%>
+            <li class="nav-item active"><a class="nav-link" href="/dishes">Dishes</a></li>
             <li class="nav-item"><a class="nav-link" href="/venues">Venues</a></li>
-          <% end %>
-          <% if current_page?('/users/')%>
+          <% else %>
             <li class="nav-item"><a class="nav-link" href="/dishes">Dishes</a></li>
             <li class="nav-item"><a class="nav-link" href="/venues">Venues</a></li>
           <% end %>
